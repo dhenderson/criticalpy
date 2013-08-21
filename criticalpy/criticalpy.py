@@ -118,7 +118,7 @@ class Task():
 
 class Project():
 	def __init__(self, tasks):
-		self.tasks = tasks # ordered list of tasks
+		self.tasks = tasks # dictionary in the form {task_id, task}
 		self.set_task_predicessors()
 		self.forward_pass()
 		self.backward_pass()
@@ -148,6 +148,11 @@ class Project():
 			
 	def order_tasks(self, tasks, is_reverse=False):
 		""" Returns a list of tasks ordered by task_id
+			Args:
+				tasks: [dictionary] dictionary in the form {task_id, task}
+				is_reverse: [boolean] True if the tasks should be in decending order. Defaults to True.
+			Returns:
+				Returns a list of ordered criticalpy.Task objects 
 		"""
 		ordered_tasks = []
 		ordered_keys = sorted(tasks, reverse=is_reverse)
